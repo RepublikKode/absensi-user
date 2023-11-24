@@ -2,6 +2,8 @@
 import Navbar from "../components/Navbar.vue";
 import Footer from "../components/Footer.vue";
 import ListBox from "../components/ListBox.vue";
+import Card from "../components/Card.vue";
+import { isRegExp } from "@vue/shared";
 
 const jurusan = [
   {
@@ -35,6 +37,19 @@ const a = [
     name: "C",
   },
 ];
+
+const data = [
+  {
+    img: "/bg.svg",
+    title: "XI PPLG B",
+    path: "#",
+  },
+  {
+    img: "/bg.svg",
+    title: "XI PPLG A",
+    path: "#",
+  },
+];
 </script>
 
 <template>
@@ -48,6 +63,14 @@ const a = [
             <ListBox :item="jurusan"></ListBox>
             <ListBox :item="kelas"></ListBox>
             <ListBox :item="a"></ListBox>
+          </div>
+          <div class="flex gap-4">
+            <Card
+              v-for="item in data"
+              :img="item.img"
+              :title="item.title"
+              :path="item.path"
+            ></Card>
           </div>
         </main>
       </div>
