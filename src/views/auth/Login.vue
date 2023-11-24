@@ -23,7 +23,9 @@ function doLogin() {
           </h3>
         </div>
         <div class="flex justify-center items-center flex-col gap-4">
-          <div class="p-6 bg-white border-t-4 border-t-red-500 max-w-md">
+          <div
+            class="p-6 shadow-lg rounded-t-md bg-white border-t-4 border-t-red-500 max-w-md"
+          >
             <h3 class="font-sans font-medium text-center">
               Masuk untuk memulai sesi Anda
             </h3>
@@ -67,7 +69,7 @@ function doLogin() {
               </div>
             </form>
           </div>
-          <p class="text-gray-500 text-xs">
+          <p class="text-gray-600 text-xs">
             &copy; {{ year.getFullYear() }} SMKN 2 Banjarmasin
           </p>
         </div>
