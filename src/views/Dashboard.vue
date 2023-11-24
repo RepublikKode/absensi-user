@@ -72,7 +72,7 @@ const row = [
         <Navbar></Navbar>
         <main class="mt-5 flex flex-col gap-5 justify-center items-center">
           <h3 class="text-center text-xl font-bold font-sans">Absensi</h3>
-          <div class="flex gap-5">
+          <div class="flex flex-wrap justify-center items-center gap-5">
             <ListBox :item="jurusan"></ListBox>
             <ListBox :item="kelas"></ListBox>
             <ListBox :item="a"></ListBox>
@@ -81,7 +81,7 @@ const row = [
             <h3 class="text-center text-xl font-bold font-sans">
               {{ item.name }}
             </h3>
-            <div class="flex gap-4">
+            <div class="flex flex-wrap justify-center items-center gap-4">
               <Card
                 v-for="item in data"
                 :img="item.img"
