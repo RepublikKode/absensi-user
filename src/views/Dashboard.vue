@@ -41,17 +41,17 @@ const data = [
   {
     img: "/bg.svg",
     title: "XI PPLG B",
-    path: "#",
+    path: "/detail",
   },
   {
     img: "/bg.svg",
     title: "XI PPLG A",
-    path: "#",
+    path: "/detail",
   },
   {
     img: "/bg.svg",
     title: "XII PPLG A",
-    path: "#",
+    path: "/detail",
   },
 ];
 
