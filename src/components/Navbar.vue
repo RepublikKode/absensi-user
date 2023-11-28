@@ -23,7 +23,7 @@ function open() {
           ></div>
         </a>
       </li>
-      <li class="flex gap-3 relative items-center">
+      <li class="flex gap-3 relative text-end items-center">
         <a href="#" class="font-medium">Muhammad Farish Asqalani</a>
         <img
           @click="open"

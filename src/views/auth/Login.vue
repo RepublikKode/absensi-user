@@ -19,7 +19,7 @@ function doLogin() {
             class="bg-[url(/img/smkn2.png)] w-12 h-12 bg-center bg-cover bg-no-repeat"
           ></div>
           <h3 class="text-xl font-sans font-medium">
-            Absensi <span class="font-normal">v.1.0</span>
+            Absensi Guru   <span class="font-normal">v.1.0</span>
           </h3>
         </div>
         <div class="flex justify-center items-center flex-col gap-4">
