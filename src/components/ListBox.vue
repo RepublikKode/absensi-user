@@ -11,7 +11,7 @@ import {
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/vue/20/solid";
 
 const props = defineProps({
-  item: String,
+  item: Array,
 });
 
 const item = ref(props.item[0]);
@@ -55,7 +55,7 @@ const item = ref(props.item[0]);
                   active ? 'bg-sky-100 text-sky-900' : 'text-gray-900',
                   'relative cursor-default select-none py-2 pl-10 pr-4',
                 ]"
-              > 
+              >
                 <span
                   :class="[
                     selected ? 'font-medium' : 'font-normal',

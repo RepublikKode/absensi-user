@@ -1,8 +1,10 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/vue/24/solid";
+import useAuth from "../service/auth";
 
 const isClicked = ref(false);
+const { getAuth, user, logout } = useAuth();
 
 function open() {
   if (isClicked.value == false) {
@@ -11,6 +13,10 @@ function open() {
     isClicked.value = false;
   }
 }
+
+onMounted(() => {
+  getAuth();
+});
 </script>
 
 <template>
@@ -24,11 +30,11 @@ function open() {
         </a>
       </li>
       <li class="flex gap-3 relative text-end items-center">
-        <a href="#" class="font-medium">Muhammad Farish Asqalani</a>
+        <a href="#" class="font-medium">{{ user.nama }}</a>
         <img
           @click="open"
           class="w-7 h-7 rounded-full"
-          src="https://api.dicebear.com/7.x/initials/svg?seed=Farish"
+          :src="`https://api.dicebear.com/7.x/initials/svg?seed=${user.nama}`"
           alt=""
         />
         <div
@@ -36,6 +42,7 @@ function open() {
           class="absolute rounded-md shadow-md flex bg-primary top-12 right-0 p-3"
         >
           <button
+            @click="logout"
             class="flex items-center px-6 py-1 hover:bg-slate-200 rounded-md transition-colors duration-150"
           >
             <ArrowLeftOnRectangleIcon

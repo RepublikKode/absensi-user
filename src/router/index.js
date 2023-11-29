@@ -7,16 +7,25 @@ const router = createRouter({
       path: "/",
       name: "dashboard.login",
       component: () => import("../views/auth/Login.vue"),
+      meta: {
+        guestRequired: true,
+      },
     },
     {
       path: "/dashboard",
       name: "dashboard",
       component: () => import("../views/Dashboard.vue"),
+      meta: {
+        authRequired: true,
+      },
     },
     {
-      path: "/detail",
+      path: "/detail/:id",
       name: "detail",
       component: () => import("../views/Detail.vue"),
+      meta: {
+        authRequired: true,
+      },
     },
   ],
 });
@@ -25,7 +34,7 @@ router.beforeEach((to, from, next) => {
   const isLoggedIn = localStorage.getItem("auth_token");
   if (to.matched.some((record) => record.meta.authRequired)) {
     if (isLoggedIn == null) {
-      next("/login");
+      next("/");
     } else {
       next();
     }
@@ -33,7 +42,7 @@ router.beforeEach((to, from, next) => {
     if (isLoggedIn == null) {
       next();
     } else {
-      next("/beranda");
+      next("/dashboard");
     }
   } else {
     next();

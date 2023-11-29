@@ -3,66 +3,14 @@ import Navbar from "../components/Navbar.vue";
 import Footer from "../components/Footer.vue";
 import ListBox from "../components/ListBox.vue";
 import Card from "../components/Card.vue";
+import useKelas from "../service/data/kelas";
+import { onMounted } from "vue";
 
-const jurusan = [
-  {
-    name: "PPLG",
-  },
-  {
-    name: "DKV",
-  },
-];
+const { index, kelas } = useKelas();
 
-const kelas = [
-  {
-    name: "X",
-  },
-  {
-    name: "XI",
-  },
-  {
-    name: "XII",
-  },
-];
-
-const a = [
-  {
-    name: "A",
-  },
-  {
-    name: "B",
-  },
-  {
-    name: "C",
-  },
-];
-
-const data = [
-  {
-    img: "/bg.svg",
-    title: "XI PPLG B",
-    path: "/detail",
-  },
-  {
-    img: "/bg.svg",
-    title: "XI PPLG A",
-    path: "/detail",
-  },
-  {
-    img: "/bg.svg",
-    title: "XII PPLG A",
-    path: "/detail",
-  },
-];
-
-const row = [
-  {
-    name: "Kelas",
-  },
-  {
-    name: "Jurusan",
-  },
-];
+onMounted(() => {
+  index();
+});
 </script>
 
 <template>
@@ -73,20 +21,16 @@ const row = [
         <main class="mt-5 flex flex-col gap-5 justify-center items-center">
           <h3 class="text-center text-xl font-bold font-sans">Absensi</h3>
           <div class="flex flex-wrap justify-center items-center gap-5">
-            <ListBox :item="jurusan"></ListBox>
-            <ListBox :item="kelas"></ListBox>
-            <ListBox :item="a"></ListBox>
+            <!-- <ListBox :item="kelas"></ListBox> -->
           </div>
-          <div class="flex flex-col gap-4" v-for="item in row">
-            <h3 class="text-center text-xl font-bold font-sans">
-              {{ item.name }}
-            </h3>
+          <div class="flex flex-col gap-4">
+            <h3 class="text-center text-xl font-bold font-sans"></h3>
             <div class="flex flex-wrap justify-center items-center gap-4">
               <Card
-                v-for="item in data"
-                :img="item.img"
-                :title="item.title"
-                :path="item.path"
+                v-for="item in kelas"
+                :title="item.kelas"
+                :path="item.id"
+                :img="'/bg.svg'"
               ></Card>
             </div>
           </div>

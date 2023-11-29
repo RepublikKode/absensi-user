@@ -9,7 +9,10 @@ const props = defineProps({
 </script>
 
 <template>
-  <router-link :to="props.path" class="flex justify-center items-center">
+  <router-link
+    :to="{ name: 'detail', params: { id: props.path } }"
+    class="flex justify-center items-center"
+  >
     <div class="p-6 bg-white max-w-md shadow-md rounded-lg">
       <div class="flex flex-col gap-4">
         <img class="w-64" :src="props.img" :alt="props.title" />

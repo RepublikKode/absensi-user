@@ -1,12 +1,17 @@
 <script setup>
 import { UserIcon, LockClosedIcon } from "@heroicons/vue/24/solid";
-import { useRouter } from "vue-router";
+import useAuth from "../../service/auth";
+import { reactive } from "vue";
 
 const year = new Date();
-const route = useRouter();
+const { login } = useAuth();
+const forms = reactive({
+  username: "",
+  password: "",
+});
 
 function doLogin() {
-  route.push("/dashboard");
+  login({ ...forms });
 }
 </script>
 
@@ -19,7 +24,7 @@ function doLogin() {
             class="bg-[url(/img/smkn2.png)] w-12 h-12 bg-center bg-cover bg-no-repeat"
           ></div>
           <h3 class="text-xl font-sans font-medium">
-            Absensi Guru   <span class="font-normal">v.1.0</span>
+            Absensi Guru <span class="font-normal">v.1.0</span>
           </h3>
         </div>
         <div class="flex justify-center items-center flex-col gap-4">
@@ -34,6 +39,7 @@ function doLogin() {
               <div class="flex flex-col gap-3 mt-5">
                 <div class="relative">
                   <input
+                    v-model="forms.username"
                     required
                     type="text"
                     class="border-2 w-80 border-gray-200 py-1.5 px-2 focus:outline-sky-500"
@@ -45,6 +51,7 @@ function doLogin() {
                 </div>
                 <div class="relative">
                   <input
+                    v-model="forms.password"
                     required
                     type="password"
                     class="border-2 w-80 border-gray-200 py-1.5 px-2 focus:outline-sky-500"
