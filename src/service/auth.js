@@ -11,14 +11,12 @@ export default function useAuth() {
   async function register(payload) {
     try {
       const response = await axios.post("/api/v1/auth/register", payload);
-      console.log(response.data);
       accepted(response.data.Body.message);
       setTimeout(() => {
         route.push("/login");
       }, 1200);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.log(error.response?.data);
         failed(error.response?.data.Body.message);
       }
     }
@@ -35,7 +33,6 @@ export default function useAuth() {
       }, 1200);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.log(error.response?.data);
         failed(error.response?.data.Body.message);
       }
     }
@@ -60,10 +57,10 @@ export default function useAuth() {
         revokeToken();
         setTimeout(() => {
           accepted("Logout sukses");
+          route.push("/");
         }, 1200);
       } catch (error) {
         if (axios.isAxiosError(error)) {
-          console.log(error.response?.data);
           failed(error.response?.data.Body.message);
         }
       }
@@ -72,7 +69,6 @@ export default function useAuth() {
 
   async function getAuth() {
     const response = await axios.get("/api/v1/profile");
-    console.log(response.data);
     user.value = response.data;
   }
 

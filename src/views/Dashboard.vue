@@ -11,6 +11,10 @@ const { index, kelas } = useKelas();
 onMounted(() => {
   index();
 });
+
+setTimeout(() => {
+  console.table(kelas.value);
+}, 1200);
 </script>
 
 <template>
@@ -21,7 +25,7 @@ onMounted(() => {
         <main class="mt-5 flex flex-col gap-5 justify-center items-center">
           <h3 class="text-center text-xl font-bold font-sans">Absensi</h3>
           <div class="flex flex-wrap justify-center items-center gap-5">
-            <!-- <ListBox :item="kelas"></ListBox> -->
+            <ListBox :item="kelas"></ListBox>
           </div>
           <div class="flex flex-col gap-4">
             <h3 class="text-center text-xl font-bold font-sans"></h3>

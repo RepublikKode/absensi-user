@@ -9,58 +9,10 @@ import { onMounted } from "vue";
 import useAuth from "../service/auth";
 
 const { kelas, show } = useKelas();
-const { store } = useAbsen();
+const { store, index, absen } = useAbsen();
 const { user, getAuth } = useAuth();
 
 const router = useRoute();
-
-const absen = [
-  {
-    nama: "lorem",
-    mapel: "lorem",
-    jam: new Date(),
-  },
-  {
-    nama: "lorem",
-    mapel: "lorem",
-    jam: new Date(),
-  },
-  {
-    nama: "lorem",
-    mapel: "lorem",
-    jam: new Date(),
-  },
-  {
-    nama: "lorem",
-    mapel: "lorem",
-    jam: new Date(),
-  },
-  {
-    nama: "lorem",
-    mapel: "lorem",
-    jam: new Date(),
-  },
-  {
-    nama: "lorem",
-    mapel: "lorem",
-    jam: new Date(),
-  },
-  {
-    nama: "lorem",
-    mapel: "lorem",
-    jam: new Date(),
-  },
-  {
-    nama: "lorem",
-    mapel: "lorem",
-    jam: new Date(),
-  },
-  {
-    nama: "lorem",
-    mapel: "lorem",
-    jam: new Date(),
-  },
-];
 
 const data = {
   user_id: user.id,
@@ -70,6 +22,7 @@ const data = {
 onMounted(() => {
   show(router.params.id);
   getAuth();
+  index();
 });
 </script>
 
@@ -92,8 +45,9 @@ onMounted(() => {
             class="bg-slate-200 text-center px-5 py-3 rounded-sm shadow h-40 overflow-auto"
           >
             <ul>
-              <li v-for="item in absen" :key="item.jam">
-                {{ item.nama }} {{ item.jam }}
+              <li v-for="item in absen">
+                {{ item.user.nama }}
+                {{ new Date(item.created_at) }}
               </li>
             </ul>
           </div>
@@ -131,12 +85,12 @@ onMounted(() => {
           <div class="h-40 overflow-auto bg-white px-7 py-2 rounded-sm">
             <ul>
               <li
-                v-for="hadir in absen"
-                :key="hadir.jam"
+                v-for="item in kelas.absen"
                 type="1"
                 class="text-lg font-normal mb-2"
               >
-                {{ hadir.jam }}
+                {{ item.user.nama }}
+                {{ new Date(item.created_at) }}
               </li>
             </ul>
           </div>

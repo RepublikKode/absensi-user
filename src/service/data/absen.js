@@ -22,7 +22,15 @@ export default function useAbsen() {
     }
   }
 
+  async function index() {
+    const response = await axios.get("/api/v1/absen");
+    console.log(response.data);
+    absen.value = response.data.data;
+  }
+
   return {
     store,
+    index,
+    absen,
   };
 }

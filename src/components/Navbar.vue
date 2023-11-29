@@ -23,17 +23,17 @@ onMounted(() => {
   <nav class="p-6 bg-[#F5F8FD]">
     <ul class="flex items-center justify-end gap-5 font-sans">
       <li class="mr-auto">
-        <a href="https://smkn2-bjm.sch.id/" class="">
+        <router-link :to="{ name: 'dashboard' }" class="">
           <div
             class="bg-[url(/img/smkn2.png)] w-9 h-9 bg-center bg-cover bg-no-repeat"
           ></div>
-        </a>
+        </router-link>
       </li>
       <li class="flex gap-3 relative text-end items-center">
         <a href="#" class="font-medium">{{ user.nama }}</a>
         <img
           @click="open"
-          class="w-7 h-7 rounded-full"
+          class="w-7 h-7 rounded-full cursor-pointer"
           :src="`https://api.dicebear.com/7.x/initials/svg?seed=${user.nama}`"
           alt=""
         />
