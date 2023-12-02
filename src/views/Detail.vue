@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar.vue";
 import useKelas from "../service/data/kelas";
 import useAbsen from "../service/data/absen";
 import { useRoute } from "vue-router";
-import { onMounted } from "vue";
+import { onMounted, reactive, ref, watchEffect } from "vue";
 import useAuth from "../service/auth";
 
 const { kelas, show } = useKelas();
@@ -14,15 +14,22 @@ const { user, getAuth } = useAuth();
 
 const router = useRoute();
 
+const pjj = ref(false);
+
 const data = {
   user_id: user.id,
   kelas_id: kelas.id,
+  is_pjj: pjj.value,
 };
 
 onMounted(() => {
   show(router.params.id);
   getAuth();
   index();
+});
+
+watchEffect(() => {
+  data.is_pjj = pjj.value;
 });
 </script>
 
@@ -47,38 +54,24 @@ onMounted(() => {
             <ul>
               <li v-for="item in absen">
                 {{ item.user.nama }}
-                {{ new Date(item.created_at) }}
+                {{ new Date(item.created_at).toLocaleDateString("en-CA") }}
               </li>
             </ul>
           </div>
-          <button
-            @click="store(data, kelas.id)"
-            class="px-8 py-2 mt-5 shadow-md rounded-sm bg-green-500 text-white hover:bg-green-600 duration-200 transition-all"
-          >
-            <FingerPrintIcon /> Absen
-          </button>
+          <form @submit.prevent="store(data, kelas.id)" class="flex flex-col">
+            <div class="">
+              <input type="checkbox" v-model="pjj" id="pjj" />
+              <label for="pjj">PJJ</label>
+            </div>
+            <button
+              class="px-8 py-2 mt-5 shadow-md rounded-sm bg-green-500 text-white hover:bg-green-600 duration-200 transition-all"
+            >
+              <FingerPrintIcon /> Absen
+            </button>
+          </form>
         </div>
       </main>
       <main class="flex flex-col lg:flex-row justify-around m-10">
-        <div class="flex flex-col mb-5 lg:w-1/2">
-          <h1 class="font-bold text-2xl mb-2">Detail Kelas</h1>
-          <div class="max-w-full lg:max-w-xl">
-            <p class="break-words">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
-              fuga quos temporibus facilis atque molestiae quidem doloribus.
-              Nam, dicta quasi? Voluptates mollitia maxime dolorem accusamus
-              numquam quos iste, quas ab, quis nam, distinctio facilis in. Enim
-              nobis, soluta nostrum omnis aperiam maxime pariatur libero impedit
-              sapiente dolorum! Consequatur voluptatibus odio eaque assumenda
-              nobis fugit illum minima excepturi voluptate non a rerum,
-              dignissimos tenetur nemo quia nihil, voluptas ducimus ipsa
-              corrupti! Minima earum laboriosam officia, pariatur error
-              assumenda cumque dolorem debitis, animi, quam eos? Architecto vel
-              nam amet cumque, doloremque sint. Hic natus id iusto quaerat modi
-              maxime voluptas soluta animi.
-            </p>
-          </div>
-        </div>
         <div class="flex flex-col max-w-md lg:w-1/2">
           <h1 class="font-bold text-2xl">Daftar Guru Mengajar</h1>
           <h1 class="font-normal text-sm">Guru yang sudah absen dikelas ini</h1>

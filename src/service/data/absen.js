@@ -1,6 +1,7 @@
 import axios from "../axios";
 import { ref } from "vue";
 import useSwal from "../swal";
+import { useRouter } from "vue-router";
 
 export default function useAbsen() {
   const absen = ref([]);
@@ -8,11 +9,14 @@ export default function useAbsen() {
 
   async function store(payload, id) {
     const response = await confirmed("Mengajar dikelas ini?");
+    const router = useRouter();
 
     if (response.isConfirmed) {
       try {
         const response = await axios.post(`/api/v1/absen/${id}`, payload);
+        console.log(payload);
         console.log(response.data);
+        router.back();
       } catch (error) {
         if (axios.isAxiosError(error)) {
           console.log(error.response?.data);
