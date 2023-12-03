@@ -13,8 +13,8 @@ export default function useAbsen() {
 
     if (response.isConfirmed) {
       try {
-        const response = await axios.post(`/api/v1/absen/${id}`, payload);
         console.log(payload);
+        const response = await axios.post(`/api/v1/absen/${id}`, payload);
         console.log(response.data);
         router.back();
       } catch (error) {

@@ -7,29 +7,38 @@ import useAbsen from "../service/data/absen";
 import { useRoute } from "vue-router";
 import { onMounted, reactive, ref, watchEffect } from "vue";
 import useAuth from "../service/auth";
+import useMapel from "../service/data/mapel";
 
 const { kelas, show } = useKelas();
 const { store, index, absen } = useAbsen();
 const { user, getAuth } = useAuth();
+const { indexMapel, mapel } = useMapel();
 
 const router = useRoute();
 
 const pjj = ref(false);
 
+const form = reactive({
+  mapel: "",
+});
+
 const data = {
   user_id: user.id,
   kelas_id: kelas.id,
   is_pjj: pjj.value,
+  mapel_id: form.mapel,
 };
 
 onMounted(() => {
   show(router.params.id);
   getAuth();
   index();
+  indexMapel();
 });
 
 watchEffect(() => {
   data.is_pjj = pjj.value;
+  data.mapel_id = form.mapel;
 });
 </script>
 
@@ -62,6 +71,14 @@ watchEffect(() => {
             <div class="">
               <input type="checkbox" v-model="pjj" id="pjj" />
               <label for="pjj">PJJ</label>
+            </div>
+            <div class="">
+              <label for="pjj">mapel</label>
+              <select v-model="form.mapel" name="mapel_id" id="mapel_id">
+                <option v-for="item in mapel" :value="item.id">
+                  {{ item.mapel }}
+                </option>
+              </select>
             </div>
             <button
               class="px-8 py-2 mt-5 shadow-md rounded-sm bg-green-500 text-white hover:bg-green-600 duration-200 transition-all"
