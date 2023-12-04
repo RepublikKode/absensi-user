@@ -16,7 +16,10 @@ export default function useAbsen() {
         console.log(payload);
         const response = await axios.post(`/api/v1/absen/${id}`, payload);
         console.log(response.data);
-        router.back();
+        accepted("Absensi berhasil disimpan")
+        setTimeout(() => {
+          router.back();
+        }, 1200);
       } catch (error) {
         if (axios.isAxiosError(error)) {
           console.log(error.response?.data);
