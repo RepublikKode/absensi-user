@@ -25,7 +25,7 @@ const tipe = [
     tipe: "pjj",
   },
   {
-    tipe: "pkk",
+    tipe: "plk",
   },
 ];
 
