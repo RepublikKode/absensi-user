@@ -26,6 +26,7 @@ export default function useAuth() {
     try {
       const response = await axios.post("/api/v1/auth/login", payload);
       const token = response.data.data.token;
+      console.log(response.data);
       storeToken(token);
       accepted(response.data.data.message);
       setTimeout(() => {
