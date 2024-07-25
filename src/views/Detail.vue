@@ -78,7 +78,7 @@ watchEffect(() => {
             class="bg-slate-200 text-center px-5 py-3 rounded-sm shadow h-40 overflow-auto"
           >
             <ul>
-              <li v-for="item in kelas.absen">
+              <li v-for="item in kelas.absen" :key="item.user.nama">
                 {{ item.user.nama }}
                 {{ new Date(item.created_at).toLocaleDateString("en-CA") }}
                 {{ item.kelas.kelas }}
@@ -101,7 +101,7 @@ watchEffect(() => {
                   id="mapel_id"
                   class="mt-1 p-2 font-medium bg-slate-100 focus:ring-indigo-500 focus:border-indigo-500 block w-52 shadow-sm text-base border-gray-300 rounded-md"
                 >
-                  <option v-for="item in tipe" :value="item.tipe">
+                  <option v-for="item in tipe" :value="item.tipe" :key="item.tipe">
                     {{ item.tipe }}
                   </option>
                 </select>
@@ -114,7 +114,7 @@ watchEffect(() => {
                   id="mapel_id"
                   class="mt-1 p-2 font-medium bg-slate-100 focus:ring-indigo-500 focus:border-indigo-500 block w-52 shadow-sm text-base border-gray-300 rounded-md"
                 >
-                  <option v-for="item in mapel" :value="item.id">
+                  <option v-for="item in mapel" :value="item.id" :key="item.id">
                     {{ item.mapel }}
                   </option>
                 </select>
@@ -127,7 +127,7 @@ watchEffect(() => {
                   id="mapel_id"
                   class="mt-1 p-2 font-medium bg-slate-100 focus:ring-indigo-500 focus:border-indigo-500 block w-52 shadow-sm text-base border-gray-300 rounded-md"
                 >
-                  <option v-for="item in waktu" :value="item.id" class="">
+                  <option v-for="item in waktu" :value="item.id" class="" :key="item.id">
                     {{ item.jamke }}
                   </option>
                 </select>
@@ -153,6 +153,7 @@ watchEffect(() => {
                 v-for="item in kelas.absen"
                 type="1"
                 class="text-lg font-normal mb-2"
+                :key="item.id"
               >
                 {{ item.user.nama }}
                 {{ new Date(item.created_at) }}

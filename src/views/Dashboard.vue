@@ -32,6 +32,7 @@ setTimeout(() => {
             <div class="flex flex-wrap justify-center items-center gap-4">
               <Card
                 v-for="item in kelas"
+                :key="item.id"
                 :title="item.kelas"
                 :path="item.id"
                 :img="'/bg.svg'"
