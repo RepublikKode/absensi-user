@@ -69,7 +69,7 @@ watchEffect(() => {
         <div class="flex flex-col lg:w-1/2">
           <div class="bg-[url(/bg.svg)] w-full h-60 bg-cover"></div>
           <div class="text-2xl font-bold text-center mt-5">
-            {{ kelas.kelas }}
+            {{ kelas.kelas }} {{ kelas.jurusan }} {{ kelas.alphabet }}
           </div>
         </div>
         <div class="flex flex-col justify-center lg:w-1/2">
@@ -80,8 +80,8 @@ watchEffect(() => {
             <ul>
               <li v-for="item in kelas.absen" :key="item.user.nama">
                 {{ item.user.nama }}
-                {{ new Date(item.created_at).toLocaleDateString("en-CA") }}
-                {{ item.kelas.kelas }}
+                {{ new Date(item.created_at) }}
+                {{ item.kelas.kelas }} {{ kelas.jurusan }} {{ kelas.alphabet }}
                 {{ item.mapel.mapel }}
                 {{ item.waktu.jamke }}
                 {{ item.metode_pembelajaran }}

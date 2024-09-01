@@ -9,6 +9,7 @@ export default function useKelas() {
 
   async function index() {
     const response = await axios.get("/api/v1/kelas");
+    console.log(response.data)
     kelas.value = response.data.kelas;
   }
 

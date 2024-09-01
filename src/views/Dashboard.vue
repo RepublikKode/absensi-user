@@ -33,7 +33,7 @@ setTimeout(() => {
               <Card
                 v-for="item in kelas"
                 :key="item.id"
-                :title="item.kelas"
+                :title='item.kelas + " " + item.jurusan.jurusan + " " + item.alphabet'
                 :path="item.id"
                 :img="'/bg.svg'"
               ></Card>
